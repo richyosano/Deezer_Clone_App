@@ -1,0 +1,21 @@
+{
+  "parser": "babel-eslint",
+  "plugins": ["babel"],
+  "rules": {
+    "babel/new-cap": 1,
+    "babel/camelcase": 1,
+    "babel/no-invalid-this": 2,
+    "babel/object-curly-spacing": [
+      1,
+      "always",
+      {
+        "objectsInObjects": false,
+        "arraysInObjects": false
+      }
+    ],
+    "babel/quotes": [2, "single", "avoid-escape"],
+    "babel/semi": 1,
+    "babel/no-unused-expressions": 1,
+    "babel/valid-typeof": 1
+  }
+}
