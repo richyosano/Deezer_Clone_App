@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Checkbox from '@mui/material/Checkbox';
 import Tooltip from '@mui/material/Tooltip';
 import makeStyles from '@mui/styles/makeStyles';
+import Skeleton from '@mui/material/Skeleton';
 
 const useStyles = makeStyles((theme) => ({
 	lightTooltip: {
@@ -35,7 +36,9 @@ export default function ArtistTopTracks(props) {
 
 		return m + ':' + s;
 	};
-	const { artistTopTracks } = props;
+	const { artistTopTracks, artistTopTracksLoading } = props;
+	const loading = artistTopTracks.length === 0 || artistTopTracksLoading;
+	const listToDisplay = loading ? [...new Array(5)] : artistTopTracks;
 
 	return (
 		<Paper
@@ -56,7 +59,7 @@ export default function ArtistTopTracks(props) {
 				Top Tracks
 			</Typography>
 			<List>
-				{artistTopTracks.map((track) => (
+				{listToDisplay.map((track) => (
 					<>
 						<ListItem
 							disablePadding
@@ -70,6 +73,7 @@ export default function ArtistTopTracks(props) {
 								>
 									<Checkbox
 										disableRipple
+										disabled={loading}
 										icon={<FavoriteBorderIcon />}
 										checkedIcon={
 											<FavoriteFilledIcon
@@ -88,11 +92,21 @@ export default function ArtistTopTracks(props) {
 								</ListItemIcon>
 								<ListItemText
 									primary={
-										<Typography variant="body2">{track.title}</Typography>
+										<Typography variant="body2">
+											{loading ? (
+												<Skeleton animation="pulse" width="95%" />
+											) : (
+												track.title
+											)}
+										</Typography>
 									}
 									secondary={
 										<Typography variant="caption" color="text.secondary">
-											{secondsToTime(track.duration)}
+											{loading ? (
+												<Skeleton animation="pulse" width="95%" />
+											) : (
+												secondsToTime(track.duration)
+											)}
 										</Typography>
 									}
 								/>

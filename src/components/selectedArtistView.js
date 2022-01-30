@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ArtistView(props) {
 	const { artist, artistTopTracks, artistInfoLoading } = props;
+	const loading = artist === null || artistInfoLoading;
 	const classes = useStyles();
 
 	return (
@@ -43,10 +44,10 @@ export default function ArtistView(props) {
 				md={3}
 				sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
 			>
-				{artistInfoLoading ? (
-					<Skeleton animation="wave" variant="circular">
+				{loading ? (
+					<Skeleton animation="pulse" variant="circular">
 						<Avatar
-							src={artist.picture_medium}
+							src="https://e-cdn-images.dzcdn.net/images/artist/324d472dbe44161377caefcff8276ce5/264x264-000000-80-0-0.jpg"
 							sx={{
 								width: '100%',
 								height: '100%',
@@ -76,19 +77,18 @@ export default function ArtistView(props) {
 						component="div"
 						sx={{ fontWeight: 500 }}
 					>
-						{artistInfoLoading ? <Skeleton animation="wave" /> : artist.name}
+						{loading ? <Skeleton animation="pulse" width={200} /> : artist.name}
 					</Typography>
 					<Typography
 						variant="body2"
 						color="text.secondary"
 						className={classes.artistFansText}
 					>
-						{artistInfoLoading ? (
-							<Skeleton animation="wave" />
+						{loading ? (
+							<Skeleton animation="pulse" width="100%" />
 						) : (
-							Number(artist.nb_fan).toLocaleString()
-						)}{' '}
-						fans
+							Number(artist.nb_fan).toLocaleString() + ' fans'
+						)}
 					</Typography>
 				</div>
 			</Grid>
