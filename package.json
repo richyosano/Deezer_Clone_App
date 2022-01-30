@@ -1,8 +1,11 @@
 {
-  "title": "ElevateAppBar Material Demo",
+  "title": "Deezer Clone App",
   "name": "deezer-clone-ui",
   "devDependencies": {
-    "eslint": "^8.7.0",
+    "@babel/core": "^7.16.12",
+    "@babel/eslint-parser": "^7.16.5",
+    "@babel/eslint-plugin": "^7.16.5",
+    "eslint": "^8.8.0",
     "react-scripts": "^5.0.0"
   },
   "description": "Deezer Music UI",

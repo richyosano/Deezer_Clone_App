@@ -21,9 +21,11 @@ function ArtistPage(props) {
 		artistInfoLoading,
 		artistAlbums,
 		getArtistAlbums,
-		selectedArtist,
+		artistAlbumsLoading,
 	} = props;
 	const params = useParams();
+	const loading = artistAlbums.length === 0 || artistAlbumsLoading;
+	const albumsToDisplay = loading ? [...new Array(4)] : artistAlbums;
 
 	React.useEffect(() => {
 		getArtistInfo(params.artistId);
@@ -33,13 +35,13 @@ function ArtistPage(props) {
 
 	return (
 		<Container sx={{ padding: 4 }}>
-			{artistInfo && (
+			{
 				<ArtistView
 					artist={artistInfo}
 					artistTopTracks={artistTopTracks}
 					artistInfoLoading={artistInfoLoading}
 				/>
-			)}
+			}
 			<Divider sx={{ fontWeight: 500, marginTop: 6 }} />
 			<Typography
 				gutterBottom
@@ -50,10 +52,9 @@ function ArtistPage(props) {
 				Albums
 			</Typography>
 			<Grid container spacing={3} justifyContent="flex-start">
-				{artistAlbums.map((album) => (
+				{albumsToDisplay.map((album) => (
 					<Grid item xs={6} sm={4} md={3}>
-						{' '}
-						<AlbumCard album={album} />
+						<AlbumCard album={album} loading={loading} />
 					</Grid>
 				))}
 			</Grid>

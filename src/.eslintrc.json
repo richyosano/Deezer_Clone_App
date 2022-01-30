@@ -1,11 +1,11 @@
 {
-  "parser": "react-scripts/node_modules/babel-eslint",
-  "plugins": ["babel"],
+  "parser": "@babel/eslint-parser",
+	"plugins": ["@babel"],
   "rules": {
-    "babel/new-cap": 1,
-    "babel/camelcase": 1,
-    "babel/no-invalid-this": 2,
-    "babel/object-curly-spacing": [
+    "@babel/new-cap": 1,
+    "@babel/no-invalid-this": 2,
+    "@babel/no-unused-expressions": 1,
+    "@babel/object-curly-spacing": [
       1,
       "always",
       {
@@ -13,9 +13,6 @@
         "arraysInObjects": false
       }
     ],
-    "babel/quotes": [2, "single", "avoid-escape"],
-    "babel/semi": 1,
-    "babel/no-unused-expressions": 1,
-    "babel/valid-typeof": 1
+    "@babel/semi": 1
   }
 }
